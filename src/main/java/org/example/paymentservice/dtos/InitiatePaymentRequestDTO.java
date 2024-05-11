@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class InitatePaymentRequestDTO {
+public class InitiatePaymentRequestDTO {
     private Long orderId;
     private String name;
     private double amount;

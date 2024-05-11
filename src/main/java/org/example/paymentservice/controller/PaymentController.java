@@ -1,6 +1,6 @@
 package org.example.paymentservice.controller;
 
-import org.example.paymentservice.dtos.InitatePaymentRequestDTO;
+import org.example.paymentservice.dtos.InitiatePaymentRequestDTO;
 import org.example.paymentservice.services.PaymentService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,11 +16,17 @@ public class PaymentController {
   }
 
   @PostMapping("/")
-    public String initiatePayment(@RequestBody  InitatePaymentRequestDTO requestDto){
-      return paymentService.initiatePayment(
-              requestDto.getOrderId(),
-              requestDto.getName(),
-              requestDto.getAmount()
-      );
+    public String initiatePayment(@RequestBody InitiatePaymentRequestDTO requestDto) {
+      String payment= null;
+      try {
+          payment = paymentService.initiatePayment(
+                  requestDto.getOrderId(),
+                  requestDto.getName(),
+                  requestDto.getAmount()
+          );
+      }catch (Exception e){
+         System.out.println(e.getMessage());
+      }
+      return payment;
   }
 }
